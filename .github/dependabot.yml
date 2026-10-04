@@ -1,0 +1,8 @@
+version: 2
+updates:
+  # Covers the workflow's actions. The pbiplint version and the validators' versions are pinned by
+  # hand; see RELEASING.md.
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
