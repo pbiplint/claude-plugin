@@ -1,0 +1,18 @@
+{
+  "name": "pbiplint",
+  "owner": {
+    "name": "pbiplint",
+    "email": "pbiplint@mckinley.consulting",
+    "url": "https://pbiplint.com"
+  },
+  "description": "pbiplint, the Power BI project linter, for Claude: one plugin with a skill and a local MCP server.",
+  "plugins": [
+    {
+      "name": "pbiplint",
+      "source": "./",
+      "description": "Lint Power BI projects (TMDL and PBIR) on your machine: a skill that has Claude lint after every change it makes, and an MCP server with read-only lint tools.",
+      "category": "development",
+      "tags": ["power-bi", "linter"]
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "manifest_version": "0.3",
+  "name": "pbiplint",
+  "display_name": "pbiplint",
+  "version": "0.2.5",
+  "description": "Lint Power BI projects (TMDL and PBIR) on your machine. Nothing is uploaded.",
+  "long_description": "Read-only tools for Claude Desktop: lint a Power BI project folder on this computer, explain a rule, and list the rules. The bundle carries pbiplint's command line itself and runs on Claude Desktop's own Node, so it downloads nothing and makes no network request.",
+  "author": { "name": "McKinley Consulting", "url": "https://pbiplint.com" },
+  "homepage": "https://pbiplint.com",
+  "repository": { "type": "git", "url": "https://github.com/pbiplint/claude-plugin" },
+  "license": "AGPL-3.0-or-later",
+  "server": {
+    "type": "node",
+    "entry_point": "server/pbiplint.mjs",
+    "mcp_config": { "command": "node", "args": ["${__dirname}/server/pbiplint.mjs", "mcp"] }
+  },
+  "tools": [
+    { "name": "lint", "description": "Lint a Power BI project on this machine and return its findings" },
+    { "name": "explain_rule", "description": "A rule's guidance: why it matters and how to fix it" },
+    { "name": "list_rules", "description": "Every rule pbiplint runs, with its severity" }
+  ],
+  "compatibility": {
+    "platforms": ["darwin", "win32", "linux"],
+    "runtimes": { "node": ">=20.19.0" }
+  }
+}
