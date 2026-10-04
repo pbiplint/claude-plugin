@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+      # Claude Code's own check of both manifests and the files they name. It needs no account.
+      # The versions are pinned here by hand; see RELEASING.md.
+      - name: Validate the plugin
+        run: npx -y @anthropic-ai/claude-code@2.1.289 plugin validate .claude-plugin/plugin.json
+      - name: Validate the marketplace
+        run: npx -y @anthropic-ai/claude-code@2.1.289 plugin validate .claude-plugin/marketplace.json
+      - name: Validate the MCP Bundle's manifest
+        run: npx -y @anthropic-ai/mcpb@2.1.2 validate mcpb/manifest.json
+      - name: Every version pin agrees
+        run: node scripts/check-pins.mjs
