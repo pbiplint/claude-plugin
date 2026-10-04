@@ -50,4 +50,4 @@ Node.js 20.19 or later for Claude Code and Cowork, since `npx` runs pbiplint. Th
 
 ## License
 
-This plugin's files are MIT licensed ([LICENSE](LICENSE)), the skill included. pbiplint itself, which `npx` runs and the MCP Bundle carries, is AGPL-3.0-or-later.
+This plugin's files are MIT licensed ([LICENSE](LICENSE)), the skill included. pbiplint itself, which `npx` runs and the MCP Bundle carries, is AGPL-3.0-or-later. The pbiplint name and logo, including the plugin's icon, are trademarks of McKinley Consulting and are not covered by either license.
