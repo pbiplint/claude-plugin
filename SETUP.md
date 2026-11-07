@@ -1,4 +1,4 @@
-# Setting up pbiplint for Claude
+# Setting up pbiplint for Claude and ChatGPT
 
 ## Claude Code
 
@@ -47,6 +47,18 @@ To set it up by hand instead, add this to Claude Desktop's `claude_desktop_confi
 }
 ```
 
+## The ChatGPT desktop app (Codex and Work)
+
+OpenAI's new ChatGPT desktop app has two views, ChatGPT (with Chat and Work) and Codex: ["Choose ChatGPT or Codex. In ChatGPT, use the toggle above the composer to select Chat or Work."](https://learn.chatgpt.com/docs/app) It takes the place of the separate Codex app. The previous ChatGPT app, now called ChatGPT Classic, has neither Work nor Codex; see OpenAI's [Moving to the new ChatGPT desktop app](https://help.openai.com/en/articles/20001276-moving-to-the-new-chatgpt-desktop-app) and [ChatGPT Work and Codex](https://help.openai.com/en/articles/20001275-chatgpt-work-and-codex).
+
+The app reads this repository's marketplace as it is: it [reads "a legacy-compatible marketplace at `$REPO_ROOT/.claude-plugin/marketplace.json`"](https://developers.openai.com/plugins/build/plugins#how-local-marketplaces-work). Install both plugins, as for Claude.
+
+1. Clone this repository and open the clone as a project in the ChatGPT desktop app.
+2. Quit and reopen the app. Open **Plugins**, choose the `pbiplint` marketplace, and install `pbiplint` and `pbiplint-mcp` with the plus button.
+3. Start a new chat in the Codex view, or in Work, and ask it to lint a Power BI project by its folder's full path. Type `@` to call the plugin or its skill by name.
+
+To update, pull the clone and restart the app. With the Codex CLI, [`codex plugin marketplace add pbiplint/claude-plugin`](https://developers.openai.com/plugins/build/plugins#add-a-marketplace-from-the-cli) adds the marketplace without a clone, and `codex plugin marketplace upgrade pbiplint` updates it. The plugins run only in a thread on your computer, so ChatGPT Classic, ChatGPT on the web, and ChatGPT on a phone cannot use them.
+
 ## Other assistants
 
-`pbiplint mcp` is a standard MCP server over stdio, so any assistant that runs local MCP servers (VS Code with GitHub Copilot, Cursor, Codex, Gemini CLI) can start it with the same command, `npx -y pbiplint@0.3.2 mcp`. For a coding assistant's skill, run `npx pbiplint@0.3.2 skill --install <assistant>` (`claude`, `copilot`, `codex`, or `gemini`) in the project's folder.
+`pbiplint mcp` is a standard MCP server over stdio, so any assistant that runs local MCP servers (VS Code with GitHub Copilot, Cursor, Gemini CLI) can start it with the same command, `npx -y pbiplint@0.3.2 mcp`. For a coding assistant's skill, run `npx pbiplint@0.3.2 skill --install <assistant>` (`claude`, `copilot`, `codex`, or `gemini`) in the project's folder.

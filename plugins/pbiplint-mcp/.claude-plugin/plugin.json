@@ -21,6 +21,7 @@
     "mcp"
   ],
   "icon": "./icon.png",
+  "mcpServers": "./.mcp.json",
   "documentationUrl": "https://pbiplint.com/cli/#mcp",
   "supportUrl": "https://github.com/pbiplint/claude-plugin/issues",
   "privacyPolicyUrl": "https://pbiplint.com/privacy/"
