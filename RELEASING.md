@@ -7,16 +7,16 @@ Each plugin release pins one pbiplint version: the MCP server runs `npx -y pbipl
 Once `npm view pbiplint@<version> version` prints the new version:
 
 1. **Pin the version.** On a branch from main, set the new version in each file that names it:
-   - `.claude-plugin/plugin.json`: `version`.
-   - `.mcp.json`: the `pbiplint@<version>` argument.
+   - `plugins/pbiplint/.claude-plugin/plugin.json` and `plugins/pbiplint-mcp/.claude-plugin/plugin.json`: `version`.
+   - `plugins/pbiplint-mcp/.mcp.json`: the `pbiplint@<version>` argument.
    - `mcpb/manifest.json`: `version`.
-   - README.md, SETUP.md, and PERMISSIONS.md: every `pbiplint@<version>` and `pbiplint-<version>.mcpb`.
+   - README.md, SETUP.md, PERMISSIONS.md, and each plugin's README.md: every `pbiplint@<version>` and `pbiplint-<version>.mcpb`.
 
-   `.claude-plugin/marketplace.json` names no version, so `plugin.json`'s is the one users see.
+   `.claude-plugin/marketplace.json` names no version, so each `plugin.json`'s is the one users see.
 2. **Refresh the skill** from the published package, from the repository root:
 
    ```bash
-   npx -y pbiplint@<version> skill > skills/pbiplint/SKILL.md
+   npx -y pbiplint@<version> skill > plugins/pbiplint/skills/pbiplint/SKILL.md
    ```
 
    Its description ends `pbiplint <version>.`, and `metadata.version` names the same version.
@@ -27,8 +27,8 @@ Once `npm view pbiplint@<version> version` prints the new version:
    sh scripts/build-mcpb.sh
    ```
 
-   It refuses to build when `mcpb/manifest.json` and `plugin.json` disagree. It writes `pbiplint-<version>.mcpb` at the root, which git ignores. Note its sha256 (`shasum -a 256 pbiplint-<version>.mcpb`) for the release notes.
-5. **Pull request.** Commit as `chore: release v<version>`, open a pull request, and let CI pass. CI validates both manifests and the MCP Bundle's manifest, and checks the pins. Merge.
+   It refuses to build when `mcpb/manifest.json` and `plugins/pbiplint-mcp`'s `plugin.json` disagree. It writes `pbiplint-<version>.mcpb` at the root, which git ignores. Note its sha256 (`shasum -a 256 pbiplint-<version>.mcpb`) for the release notes.
+5. **Pull request.** Commit as `chore: release v<version>`, open a pull request, and let CI pass. CI validates both plugins, the marketplace, and the MCP Bundle's manifest, and checks the pins. Merge.
 6. **Tag.** The maintainer tags the merge commit and pushes the tag:
 
    ```bash
@@ -48,7 +48,8 @@ Once `npm view pbiplint@<version> version` prints the new version:
    export CLAUDE_CONFIG_DIR=$(mktemp -d)
    claude plugin marketplace add pbiplint/claude-plugin
    claude plugin install pbiplint@pbiplint
-   claude plugin list            # pbiplint@pbiplint, the new version, enabled
+   claude plugin install pbiplint-mcp@pbiplint
+   claude plugin list            # pbiplint@pbiplint and pbiplint-mcp@pbiplint, the new version, enabled
    unset CLAUDE_CONFIG_DIR
    ```
 
@@ -58,9 +59,9 @@ Users who added the marketplace get the new version with `/plugin marketplace up
 
 ## The directory listing (optional)
 
-The plugin does not need Anthropic's directory: the repository is its own marketplace. A listing, if there is one, is submitted at claude.ai/directory/manage as a plugin bundle from this repository, and follows the tracked branch or tag after that (the directory's [Update a published plugin](https://claude.com/docs/plugins/submit#update-a-published-plugin)). How a new version reaches a listing here, and whether each one is held for a reviewer, is unconfirmed until we have done it once. Write down what happened here then.
+The plugins do not need Anthropic's directory: the repository is its own marketplace. Only the `pbiplint` plugin, the skill, is submitted, as a plugin bundle from this repository with `plugins/pbiplint` as its folder. The directory refuses a plugin that runs a program on the user's computer, such as `pbiplint-mcp`'s local server or a script, unless it comes from an organization Anthropic has verified, and there is no way to apply yet (the submission's check, November 7, 2026). That is why the two are separate plugins, and why `scripts/` sits outside both plugin folders. A listing is submitted at claude.ai/directory/manage and follows the tracked branch or tag after that (the directory's [Update a published plugin](https://claude.com/docs/plugins/submit#update-a-published-plugin)). How a new version reaches a listing here, and whether each one is held for a reviewer, is unconfirmed until we have done it once. Write down what happened here then.
 
-`plugin.json` already carries the fields a listing reads (`author`, `homepage`, `documentationUrl`, `supportUrl`, `privacyPolicyUrl`), and PERMISSIONS.md is the inventory a submission asks for.
+`plugins/pbiplint/.claude-plugin/plugin.json` already carries the fields a listing reads (`icon`, `documentationUrl`, `supportUrl`, `privacyPolicyUrl`, beside `author` and `homepage`), its README is the listing's description, and PERMISSIONS.md is the inventory a submission asks for.
 
 ## Pinned versions
 

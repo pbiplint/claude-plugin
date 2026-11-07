@@ -5,14 +5,28 @@
     "email": "pbiplint@mckinley.consulting",
     "url": "https://pbiplint.com"
   },
-  "description": "pbiplint, the Power BI project linter, for Claude: one plugin with a skill and a local MCP server.",
+  "description": "pbiplint, the Power BI project linter, for Claude: a skill that has Claude lint its own work, and a local MCP server with read-only lint tools, as two plugins.",
   "plugins": [
     {
       "name": "pbiplint",
-      "source": "./",
-      "description": "Lint Power BI projects (TMDL and PBIR) on your machine: a skill that has Claude lint after every change it makes, and an MCP server with read-only lint tools.",
+      "source": "./plugins/pbiplint",
+      "description": "Lint Power BI projects (TMDL and PBIR) on your machine: a skill that has Claude run pbiplint after every change it makes, and fix what it finds.",
       "category": "development",
-      "tags": ["power-bi", "linter"]
+      "tags": [
+        "power-bi",
+        "linter"
+      ]
+    },
+    {
+      "name": "pbiplint-mcp",
+      "source": "./plugins/pbiplint-mcp",
+      "description": "pbiplint's read-only lint tools as a local MCP server: lint a project, explain a rule, list the rules.",
+      "category": "development",
+      "tags": [
+        "power-bi",
+        "linter",
+        "mcp"
+      ]
     }
   ]
 }

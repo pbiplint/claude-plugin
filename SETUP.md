@@ -2,14 +2,15 @@
 
 ## Claude Code
 
-This repository is its own plugin marketplace. In Claude Code, add it and install the plugin:
+This repository is its own plugin marketplace, with two plugins: `pbiplint`, the skill, and `pbiplint-mcp`, the MCP server. In Claude Code, add the marketplace and install both:
 
 ```
 /plugin marketplace add pbiplint/claude-plugin
 /plugin install pbiplint@pbiplint
+/plugin install pbiplint-mcp@pbiplint
 ```
 
-From a shell, the same is `claude plugin marketplace add pbiplint/claude-plugin` and `claude plugin install pbiplint@pbiplint`. Updates arrive with `/plugin marketplace update pbiplint`. To try a clone for one session instead, run `claude --plugin-dir <path-to-clone>`.
+From a shell, the same is `claude plugin marketplace add pbiplint/claude-plugin`, then `claude plugin install pbiplint@pbiplint` and `claude plugin install pbiplint-mcp@pbiplint`. Updates arrive with `/plugin marketplace update pbiplint`. Through version 0.2.5 the two were one plugin, `pbiplint`; if you installed that, install `pbiplint-mcp` as well to keep the tools. To try a clone for one session instead, run `claude --plugin-dir <path-to-clone>/plugins/pbiplint --plugin-dir <path-to-clone>/plugins/pbiplint-mcp`.
 
 The skill and the MCP server load the next time Claude Code starts. Ask Claude to lint a Power BI project, or to change one: the skill has it lint after each change and fix what it broke before it reports back.
 
@@ -25,7 +26,7 @@ A finding you want to keep can be switched off in the same file, or with a `pbip
 
 ## Cowork
 
-In Claude Desktop, open **Customize > Plugins**, add the marketplace from GitHub (`pbiplint/claude-plugin`), and install pbiplint from it. The skill loads in every Cowork session, and the MCP server runs when the session runs on your computer.
+In Claude Desktop, open **Customize > Plugins**, add the marketplace from GitHub (`pbiplint/claude-plugin`), and install both plugins from it, `pbiplint` and `pbiplint-mcp`. The skill loads in every Cowork session, and the MCP server runs when the session runs on your computer.
 
 ## Claude Desktop's chat
 

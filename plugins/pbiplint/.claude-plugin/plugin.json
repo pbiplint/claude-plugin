@@ -2,7 +2,7 @@
   "name": "pbiplint",
   "displayName": "pbiplint",
   "version": "0.3.2",
-  "description": "Lint Power BI projects (TMDL and PBIR) on your machine: a skill that has Claude lint after every change it makes, and an MCP server with read-only lint tools. Nothing is uploaded.",
+  "description": "Lint Power BI projects (TMDL and PBIR) on your machine: a skill that has Claude run pbiplint after every change it makes to a project, and fix what it finds before it reports back. Nothing is uploaded.",
   "author": {
     "name": "pbiplint",
     "email": "pbiplint@mckinley.consulting",
@@ -20,7 +20,7 @@
     "semantic-model"
   ],
   "icon": "./icon.png",
-  "documentationUrl": "https://pbiplint.com/cli/#mcp",
+  "documentationUrl": "https://pbiplint.com/cli/",
   "supportUrl": "https://github.com/pbiplint/claude-plugin/issues",
   "privacyPolicyUrl": "https://pbiplint.com/privacy/"
 }
