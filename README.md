@@ -1,6 +1,6 @@
 # pbiplint for Claude
 
-[pbiplint](https://pbiplint.com) lints Power BI projects (PBIP): the semantic model's TMDL and the report's PBIR, against more than a hundred best-practice rules. This repository brings it into Claude, on your own machine, as a plugin marketplace with two plugins. Codex and the ChatGPT desktop app install the same two plugins from the same marketplace. Nothing you lint is uploaded, as the [pbiplint Privacy Promise](https://pbiplint.com/privacy/) says.
+[pbiplint](https://pbiplint.com) lints Power BI projects (PBIP): the semantic model's TMDL and the report's PBIR, against more than a hundred best-practice rules. This repository brings it into Claude, on your own machine, as a plugin marketplace with two plugins. The ChatGPT desktop app installs the same two plugins from the same marketplace, for its Codex view and for Work. Nothing you lint is uploaded, as the [pbiplint Privacy Promise](https://pbiplint.com/privacy/) says.
 
 ## What it adds
 
@@ -14,7 +14,7 @@ Install both. They are separate so the skill can be listed in Claude's plugin di
 - **Runs:** `npx -y pbiplint@0.3.2 mcp` for `pbiplint-mcp`'s server, pinned to one version of the [pbiplint package on npm](https://www.npmjs.com/package/pbiplint); the skill has Claude run pbiplint from its terminal. The first run downloads that package from the npm registry; the request carries nothing from your projects.
 - **Reads:** the project files a tool or a command is pointed at.
 - **Writes:** nothing.
-- **Sends:** nothing. pbiplint makes no network request, sends no telemetry, and has no account. What the tools return goes to the assistant, which sends it to its maker (Anthropic for Claude, OpenAI for Codex and ChatGPT) with the rest of the conversation, as it does everything it reads; the findings name your tables, columns, and measures.
+- **Sends:** nothing. pbiplint makes no network request, sends no telemetry, and has no account. What the tools return goes to the assistant, which sends it to its maker (Anthropic for Claude, OpenAI for ChatGPT and Codex) with the rest of the conversation, as it does everything it reads; the findings name your tables, columns, and measures.
 
 ## Where it works
 
@@ -23,15 +23,14 @@ Install both. They are separate so the skill can be listed in Claude's plugin di
 | Claude Code | Yes | Yes |
 | Cowork, running on your computer | Yes | Yes |
 | Chat in claude.ai or Claude Desktop | Yes, with no terminal to run pbiplint in | Not through the plugin: use the MCP Bundle in [SETUP.md](SETUP.md) |
-| Codex, in the ChatGPT desktop app or the Codex CLI | Yes | Yes |
-| ChatGPT desktop app, in a thread that runs on your computer | Yes | Yes |
-| ChatGPT on the web or on a phone | No: the plugins install from a marketplace on your computer | No |
+| ChatGPT desktop app: the Codex view, and Work in the ChatGPT view | Yes | Yes |
+| ChatGPT Classic, and ChatGPT on the web or a phone | No: no Work or Codex, and no terminal to run pbiplint in | No |
 
 Claude's chat ignores a plugin's local servers, so for Claude Desktop's chat, install the one-click MCP Bundle from this repository's releases.
 
 ## Requirements
 
-Node.js 20.19 or later for Claude Code, Cowork, Codex, and the ChatGPT desktop app, since `npx` runs pbiplint. The MCP Bundle needs nothing: it runs on Claude Desktop's own Node.
+Node.js 20.19 or later for Claude Code, Cowork, and the ChatGPT desktop app, since `npx` runs pbiplint. The MCP Bundle needs nothing: it runs on Claude Desktop's own Node.
 
 ## Install
 
@@ -43,11 +42,7 @@ Node.js 20.19 or later for Claude Code, Cowork, Codex, and the ChatGPT desktop a
   /plugin install pbiplint-mcp@pbiplint
   ```
 
-- **Codex and the ChatGPT desktop app:** add the same marketplace with the Codex CLI, then install both plugins from **Plugins** in the app, or from `/plugins` in the CLI.
-
-  ```
-  codex plugin marketplace add pbiplint/claude-plugin
-  ```
+- **The ChatGPT desktop app (Codex and Work):** open a clone of this repository as a project, restart the app, and install both plugins from **Plugins**. They work in the Codex view and in Work.
 
 - **Claude Desktop's chat:** download `pbiplint-0.3.2.mcpb` from this repository's [releases](https://github.com/pbiplint/claude-plugin/releases) and open it; Claude Desktop installs the MCP server in one click.
 
@@ -55,7 +50,7 @@ Node.js 20.19 or later for Claude Code, Cowork, Codex, and the ChatGPT desktop a
 
 ## Setup and help
 
-- [SETUP.md](SETUP.md): installing the plugins, in Claude, Codex, and the ChatGPT desktop app, and the MCP Bundle.
+- [SETUP.md](SETUP.md): installing the plugins in Claude and in the ChatGPT desktop app, and the MCP Bundle.
 - [PERMISSIONS.md](PERMISSIONS.md): everything each plugin runs, reads, writes, and sends.
 - [pbiplint.com](https://pbiplint.com): the rules, the command line, and the site that lints in your browser.
 - Issues and questions: [github.com/pbiplint/pbiplint](https://github.com/pbiplint/pbiplint/issues).

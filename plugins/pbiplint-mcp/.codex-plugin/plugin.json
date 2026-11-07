@@ -1,0 +1,40 @@
+{
+  "name": "pbiplint-mcp",
+  "version": "0.3.2",
+  "description": "pbiplint's read-only lint tools as a local MCP server: lint a Power BI project on your machine, explain a rule, and list the rules. Nothing is uploaded.",
+  "author": {
+    "name": "pbiplint",
+    "email": "pbiplint@mckinley.consulting",
+    "url": "https://pbiplint.com"
+  },
+  "homepage": "https://pbiplint.com",
+  "repository": "https://github.com/pbiplint/claude-plugin",
+  "license": "MIT",
+  "keywords": [
+    "power-bi",
+    "tmdl",
+    "pbir",
+    "pbip",
+    "linter",
+    "semantic-model",
+    "mcp"
+  ],
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "pbiplint tools",
+    "shortDescription": "pbiplint's local lint tools",
+    "longDescription": "pbiplint's three read-only tools as a local MCP server: lint lints a Power BI project folder and returns the findings, explain_rule gives a rule's guidance, and list_rules lists every rule. The server runs on your computer with npx and Node.js 20.19 or later. It reads only the project files you point it at, writes nothing, and makes no network request; npx's download of the pbiplint package carries nothing from your projects.",
+    "developerName": "pbiplint",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Lint Power BI projects",
+      "Explain lint rules",
+      "List lint rules"
+    ],
+    "websiteURL": "https://pbiplint.com",
+    "supportURL": "https://github.com/pbiplint/claude-plugin/issues",
+    "privacyPolicyURL": "https://pbiplint.com/privacy/",
+    "composerIcon": "./icon.png",
+    "logo": "./icon.png"
+  }
+}

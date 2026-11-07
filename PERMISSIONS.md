@@ -46,7 +46,7 @@ Nothing. Its only output is the MCP messages it writes to stdout for the app.
 
 ## Where the findings go
 
-To the assistant that called it, and nowhere else. The assistant sends what a tool returns, as it does everything it reads, to its maker with the rest of the conversation: Claude to Anthropic, Codex and ChatGPT to OpenAI. The findings name the project's tables, columns, measures, pages, and visuals, and its file paths. They hold no data from the model.
+To the assistant that called it, and nowhere else. The assistant sends what a tool returns, as it does everything it reads, to its maker with the rest of the conversation: Claude to Anthropic, ChatGPT and Codex to OpenAI. The findings name the project's tables, columns, measures, pages, and visuals, and its file paths. They hold no data from the model.
 
 ## Data handling, in short
 

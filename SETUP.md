@@ -1,4 +1,4 @@
-# Setting up pbiplint for Claude, Codex, and ChatGPT
+# Setting up pbiplint for Claude and ChatGPT
 
 ## Claude Code
 
@@ -47,21 +47,17 @@ To set it up by hand instead, add this to Claude Desktop's `claude_desktop_confi
 }
 ```
 
-## Codex and the ChatGPT desktop app
+## The ChatGPT desktop app (Codex and Work)
 
-OpenAI's apps read this repository's marketplace as it is: the ChatGPT desktop app [reads "a legacy-compatible marketplace at `$REPO_ROOT/.claude-plugin/marketplace.json`"](https://developers.openai.com/plugins/build/plugins#how-local-marketplaces-work), and Codex runs the MCP server plugin's local server. Install both plugins, as for Claude.
+OpenAI's new ChatGPT desktop app has two views, ChatGPT (with Chat and Work) and Codex: ["Choose ChatGPT or Codex. In ChatGPT, use the toggle above the composer to select Chat or Work."](https://learn.chatgpt.com/docs/app) It takes the place of the separate Codex app. The previous ChatGPT app, now called ChatGPT Classic, has neither Work nor Codex; see OpenAI's [Moving to the new ChatGPT desktop app](https://help.openai.com/en/articles/20001276-moving-to-the-new-chatgpt-desktop-app) and [ChatGPT Work and Codex](https://help.openai.com/en/articles/20001275-chatgpt-work-and-codex).
 
-1. Add the marketplace with the Codex CLI. [`codex plugin marketplace add`](https://developers.openai.com/plugins/build/plugins#add-a-marketplace-from-the-cli) takes a GitHub repository, a branch with `--ref`, or a local folder:
+The app reads this repository's marketplace as it is: it [reads "a legacy-compatible marketplace at `$REPO_ROOT/.claude-plugin/marketplace.json`"](https://developers.openai.com/plugins/build/plugins#how-local-marketplaces-work). Install both plugins, as for Claude.
 
-   ```
-   codex plugin marketplace add pbiplint/claude-plugin
-   ```
+1. Clone this repository and open the clone as a project in the ChatGPT desktop app.
+2. Quit and reopen the app. Open **Plugins**, choose the `pbiplint` marketplace, and install `pbiplint` and `pbiplint-mcp` with the plus button.
+3. Start a new chat in the Codex view, or in Work, and ask it to lint a Power BI project by its folder's full path. Type `@` to call the plugin or its skill by name.
 
-   Without the CLI, open a clone of this repository as a project in the ChatGPT desktop app instead; the app finds the marketplace at the clone's root.
-2. Restart the ChatGPT desktop app. Open **Plugins**, choose the `pbiplint` marketplace, and install `pbiplint` and `pbiplint-mcp` with the plus button. In the Codex CLI, enter `/plugins` and install both from the `pbiplint` tab.
-3. Start a new chat in Codex, or a ChatGPT thread that runs on your computer, and ask it to lint a Power BI project by its folder's full path. Type `@` to call the plugin or its skill by name.
-
-Updates arrive with `codex plugin marketplace upgrade pbiplint`. The plugins run only where a thread runs on your computer: ChatGPT on the web and on a phone has no local marketplace and no terminal to run pbiplint in.
+To update, pull the clone and restart the app. With the Codex CLI, [`codex plugin marketplace add pbiplint/claude-plugin`](https://developers.openai.com/plugins/build/plugins#add-a-marketplace-from-the-cli) adds the marketplace without a clone, and `codex plugin marketplace upgrade pbiplint` updates it. The plugins run only in a thread on your computer, so ChatGPT Classic, ChatGPT on the web, and ChatGPT on a phone cannot use them.
 
 ## Other assistants
 

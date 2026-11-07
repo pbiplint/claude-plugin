@@ -1,0 +1,43 @@
+{
+  "name": "pbiplint",
+  "version": "0.3.2",
+  "description": "Lint Power BI projects (TMDL and PBIR) on your machine: a skill that has the assistant run pbiplint after every change it makes to a project, and fix what it finds before it reports back. Nothing is uploaded.",
+  "author": {
+    "name": "pbiplint",
+    "email": "pbiplint@mckinley.consulting",
+    "url": "https://pbiplint.com"
+  },
+  "homepage": "https://pbiplint.com",
+  "repository": "https://github.com/pbiplint/claude-plugin",
+  "license": "MIT",
+  "keywords": [
+    "power-bi",
+    "tmdl",
+    "pbir",
+    "pbip",
+    "linter",
+    "semantic-model"
+  ],
+  "skills": "./skills/",
+  "requires_local_executor": true,
+  "interface": {
+    "displayName": "pbiplint",
+    "shortDescription": "Lint Power BI projects",
+    "longDescription": "pbiplint lints Power BI projects (PBIP), the semantic model's TMDL and the report's PBIR, against more than a hundred best-practice rules, on your own computer. This skill has the assistant run pbiplint after every change to a project's TMDL or PBIR files, however the change was made, read the short summary first, fix errors first, look up a rule's guidance before fixing it, and lint again after each fix. It leaves choices such as ignoring a finding to you.\n\nIt needs a thread that runs on your computer, with Node.js 20.19 or later, since it runs pbiplint with npx. pbiplint makes no network request and sends no telemetry; only npx's download of the pbiplint package reaches the npm registry, and that request carries nothing from your projects. What pbiplint reports goes to the assistant with the rest of the conversation: the findings name your tables, columns, and measures, never the model's data.",
+    "developerName": "pbiplint",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Lint Power BI projects",
+      "Explain lint rules"
+    ],
+    "websiteURL": "https://pbiplint.com",
+    "supportURL": "https://github.com/pbiplint/claude-plugin/issues",
+    "privacyPolicyURL": "https://pbiplint.com/privacy/",
+    "defaultPrompt": [
+      "Lint the Power BI project in this folder and fix the errors.",
+      "Explain the pbiplint rule PROVIDE_FORMAT_STRING_FOR_MEASURES."
+    ],
+    "composerIcon": "./icon.png",
+    "logo": "./icon.png"
+  }
+}

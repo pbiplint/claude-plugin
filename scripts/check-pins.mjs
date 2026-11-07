@@ -5,8 +5,12 @@
 // `pbiplint-<version>.mcpb` in the Markdown files that name one. Also fails unless the MCP server
 // plugin's plugin.json names its server file in `mcpServers` (Codex and the ChatGPT desktop app
 // read the field; Claude finds the file without it) and the skill plugin declares no MCP server.
+// Each plugin's .codex-plugin/plugin.json, which Codex and the ChatGPT desktop app read in place of
+// the Claude manifest, must match it in name and version and carry what Codex then needs on its own:
+// the skills folder and `requires_local_executor` for the skill plugin, `mcpServers` for the MCP
+// server plugin, and icon files that exist.
 // Run from the repository root: node scripts/check-pins.mjs
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 
 const read = (p) => readFileSync(p, "utf8");
 const json = (p) => JSON.parse(read(p));
@@ -24,6 +28,25 @@ if (tools.mcpServers !== "./.mcp.json")
   problems.push(`${TOOLS}'s plugin.json must say "mcpServers": "./.mcp.json" (found ${JSON.stringify(tools.mcpServers)})`);
 if ("mcpServers" in json(`${SKILL}/.claude-plugin/plugin.json`))
   problems.push(`${SKILL}'s plugin.json must not declare an MCP server; the server lives in ${TOOLS}`);
+const want = (where, ok, what) => {
+  if (!ok) problems.push(`${where} must ${what}`);
+};
+for (const [dir, codexNeeds] of [
+  [SKILL, (m) => [["say \"skills\": \"./skills/\"", m.skills === "./skills/"],
+                  ["say \"requires_local_executor\": true", m.requires_local_executor === true],
+                  ["not declare an MCP server", !("mcpServers" in m)]]],
+  [TOOLS, (m) => [["say \"mcpServers\": \"./.mcp.json\"", m.mcpServers === "./.mcp.json"]]],
+]) {
+  const where = `${dir}/.codex-plugin/plugin.json`;
+  const codex = json(where);
+  expect(where, codex.version);
+  want(where, codex.name === json(`${dir}/.claude-plugin/plugin.json`).name, "use the Claude manifest's name");
+  for (const [what, ok] of codexNeeds(codex)) want(where, ok, what);
+  for (const field of ["composerIcon", "logo"]) {
+    const icon = codex.interface?.[field];
+    want(where, typeof icon === "string" && icon.startsWith("./") && existsSync(`${dir}/${icon}`), `name an existing file in interface.${field}`);
+  }
+}
 const args = json(`${TOOLS}/.mcp.json`).mcpServers?.pbiplint?.args ?? [];
 expect(`${TOOLS}/.mcp.json's launcher`, args.find((a) => a.startsWith("pbiplint@"))?.slice("pbiplint@".length));
 expect("mcpb/manifest.json", json("mcpb/manifest.json").version);
@@ -38,4 +61,4 @@ for (const doc of ["README.md", "SETUP.md", "PERMISSIONS.md", `${SKILL}/README.m
 
 for (const p of problems) console.error(p);
 if (problems.length) process.exit(1);
-console.log(`every pin says ${version}, and the MCP server's manifest names .mcp.json`);
+console.log(`every pin says ${version}, and the Claude and Codex manifests agree`);
