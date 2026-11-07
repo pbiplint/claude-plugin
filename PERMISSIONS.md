@@ -1,17 +1,17 @@
-# What the pbiplint plugin can do
+# What the pbiplint plugins can do
 
-A full list of what the plugin runs, reads, writes, and sends, for anyone deciding whether to install it or reviewing it. It holds for version 0.3.2 of the plugin, which pins pbiplint 0.3.2.
+A full list of what this repository's two plugins run, read, write, and send, for anyone deciding whether to install them or reviewing them: `pbiplint`, the skill, and `pbiplint-mcp`, the MCP server. It holds for version 0.3.2 of both, which pin pbiplint 0.3.2.
 
 ## What it contains
 
 | Component | File | What it is |
 | --- | --- | --- |
-| A skill | `skills/pbiplint/SKILL.md` | Instructions for Claude: when to run pbiplint, how to read its results, and what to leave to you. It is the file `pbiplint skill` prints, copied from the pbiplint package at 0.3.2. |
-| An MCP server | `.mcp.json` | One local server, started as below. |
+| A skill, the `pbiplint` plugin | `plugins/pbiplint/skills/pbiplint/SKILL.md` | Instructions for Claude: when to run pbiplint, how to read its results, and what to leave to you. It is the file `pbiplint skill` prints, copied from the pbiplint package at 0.3.2. |
+| An MCP server, the `pbiplint-mcp` plugin | `plugins/pbiplint-mcp/.mcp.json` | One local server, started as below. |
 
-It has no hooks, no commands, no agents, no executables, and no remote MCP server. It asks for no credentials and no settings.
+Neither plugin has hooks, commands, agents, executables, or a remote MCP server, and neither asks for credentials or settings. The `pbiplint` plugin starts no process of its own: its skill tells Claude to run pbiplint in Claude's terminal, as below.
 
-## The process it starts
+## The process `pbiplint-mcp` starts
 
 - **Command:** `npx -y pbiplint@0.3.2 mcp`, with no other arguments and no environment variables of its own.
 - **Package:** [`pbiplint`](https://www.npmjs.com/package/pbiplint) on npm at exactly 0.3.2. It has no runtime dependencies: the MCP SDK and the linter are bundled into one file, `dist/pbiplint.mjs`. Each version is published from its GitHub release tag with npm provenance, so `npm audit signatures` verifies it.

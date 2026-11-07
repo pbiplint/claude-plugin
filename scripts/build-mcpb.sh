@@ -2,12 +2,12 @@
 # Builds pbiplint-<version>.mcpb, the MCP Bundle for Claude Desktop's chat, from the published
 # pbiplint package at the version mcpb/manifest.json names. Run from the repository root:
 #   sh scripts/build-mcpb.sh
-# The version must match .claude-plugin/plugin.json's and be on npm.
+# The version must match plugins/pbiplint-mcp/.claude-plugin/plugin.json's and be on npm.
 # The bundle holds the CLI's single-file build, its LICENSE and NOTICE, and the manifest.
 set -eu
 version=$(node -p 'require("./mcpb/manifest.json").version')
-plugin=$(node -p 'require("./.claude-plugin/plugin.json").version')
-[ "$version" = "$plugin" ] || { echo "mcpb/manifest.json says $version, plugin.json says $plugin" >&2; exit 1; }
+plugin=$(node -p 'require("./plugins/pbiplint-mcp/.claude-plugin/plugin.json").version')
+[ "$version" = "$plugin" ] || { echo "mcpb/manifest.json says $version, plugins/pbiplint-mcp's plugin.json says $plugin" >&2; exit 1; }
 stage=$(mktemp -d)
 trap 'rm -rf "$stage"' EXIT
 npm pack "pbiplint@$version" --pack-destination "$stage" >/dev/null
