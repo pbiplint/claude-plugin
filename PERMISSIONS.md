@@ -1,20 +1,20 @@
 # What the pbiplint plugin can do
 
-A full list of what the plugin runs, reads, writes, and sends, for anyone deciding whether to install it or reviewing it. It holds for version 0.2.5 of the plugin, which pins pbiplint 0.2.5.
+A full list of what the plugin runs, reads, writes, and sends, for anyone deciding whether to install it or reviewing it. It holds for version 0.3.2 of the plugin, which pins pbiplint 0.3.2.
 
 ## What it contains
 
 | Component | File | What it is |
 | --- | --- | --- |
-| A skill | `skills/pbiplint/SKILL.md` | Instructions for Claude: when to run pbiplint, how to read its results, and what to leave to you. It is the file `pbiplint skill` prints, copied from the pbiplint package at 0.2.5. |
+| A skill | `skills/pbiplint/SKILL.md` | Instructions for Claude: when to run pbiplint, how to read its results, and what to leave to you. It is the file `pbiplint skill` prints, copied from the pbiplint package at 0.3.2. |
 | An MCP server | `.mcp.json` | One local server, started as below. |
 
 It has no hooks, no commands, no agents, no executables, and no remote MCP server. It asks for no credentials and no settings.
 
 ## The process it starts
 
-- **Command:** `npx -y pbiplint@0.2.5 mcp`, with no other arguments and no environment variables of its own.
-- **Package:** [`pbiplint`](https://www.npmjs.com/package/pbiplint) on npm at exactly 0.2.5. It has no runtime dependencies: the MCP SDK and the linter are bundled into one file, `dist/pbiplint.mjs`. Each version is published from its GitHub release tag with npm provenance, so `npm audit signatures` verifies it.
+- **Command:** `npx -y pbiplint@0.3.2 mcp`, with no other arguments and no environment variables of its own.
+- **Package:** [`pbiplint`](https://www.npmjs.com/package/pbiplint) on npm at exactly 0.3.2. It has no runtime dependencies: the MCP SDK and the linter are bundled into one file, `dist/pbiplint.mjs`. Each version is published from its GitHub release tag with npm provenance, so `npm audit signatures` verifies it.
 - **Runs as:** your user, with Node.js, in the folder the app starts it in. It talks to the app over stdin and stdout and opens no port. It stops when the app closes its input.
 
 ## Its tools
@@ -23,7 +23,7 @@ Each tool carries MCP's annotations `readOnlyHint: true`, `destructiveHint: fals
 
 | Tool | Input | What it does |
 | --- | --- | --- |
-| `lint` | `path`, and optionally `quiet`, `rules`, `failOn` | Lints the Power BI project at `path` and returns the findings as JSON, or a short summary with `quiet`. |
+| `lint` | `path`, and optionally `quiet`, `rules`, `failOn` | Lints the Power BI project at `path`, or each project in a folder that holds several, and returns the findings as JSON, or a short summary with `quiet`. |
 | `explain_rule` | `ruleId` | Returns one rule's guidance from the pages bundled in the package. |
 | `list_rules` | none | Returns every rule with its severity. |
 

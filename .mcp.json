@@ -2,7 +2,7 @@
   "mcpServers": {
     "pbiplint": {
       "command": "npx",
-      "args": ["-y", "pbiplint@0.2.5", "mcp"]
+      "args": ["-y", "pbiplint@0.3.2", "mcp"]
     }
   }
 }

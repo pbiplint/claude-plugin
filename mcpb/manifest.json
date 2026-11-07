@@ -2,7 +2,7 @@
   "manifest_version": "0.3",
   "name": "pbiplint",
   "display_name": "pbiplint",
-  "version": "0.2.5",
+  "version": "0.3.2",
   "description": "Lint Power BI projects (TMDL and PBIR) on your machine. Nothing is uploaded.",
   "long_description": "Read-only tools for Claude Desktop: lint a Power BI project folder on this computer, explain a rule, and list the rules. The bundle carries pbiplint's command line itself and runs on Claude Desktop's own Node, so it downloads nothing and makes no network request.",
   "author": { "name": "McKinley Consulting", "url": "https://pbiplint.com" },
