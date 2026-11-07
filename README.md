@@ -9,7 +9,7 @@
 
 ## What it runs, reads, and sends
 
-- **Runs:** `npx -y pbiplint@0.2.5 mcp` for the server, pinned to one version of the [pbiplint package on npm](https://www.npmjs.com/package/pbiplint); the skill has Claude run pbiplint from its terminal. The first run downloads that package from the npm registry; the request carries nothing from your projects.
+- **Runs:** `npx -y pbiplint@0.3.2 mcp` for the server, pinned to one version of the [pbiplint package on npm](https://www.npmjs.com/package/pbiplint); the skill has Claude run pbiplint from its terminal. The first run downloads that package from the npm registry; the request carries nothing from your projects.
 - **Reads:** the project files a tool or a command is pointed at.
 - **Writes:** nothing.
 - **Sends:** nothing. pbiplint makes no network request, sends no telemetry, and has no account. What the tools return goes to Claude, which sends it to Anthropic with the rest of the conversation, as it does everything Claude reads; the findings name your tables, columns, and measures.
@@ -37,7 +37,7 @@ Node.js 20.19 or later for Claude Code and Cowork, since `npx` runs pbiplint. Th
   /plugin install pbiplint@pbiplint
   ```
 
-- **Claude Desktop's chat:** download `pbiplint-0.2.5.mcpb` from this repository's [releases](https://github.com/pbiplint/claude-plugin/releases) and open it; Claude Desktop installs the MCP server in one click.
+- **Claude Desktop's chat:** download `pbiplint-0.3.2.mcpb` from this repository's [releases](https://github.com/pbiplint/claude-plugin/releases) and open it; Claude Desktop installs the MCP server in one click.
 
 [SETUP.md](SETUP.md) has both in full, with Cowork and other assistants.
 

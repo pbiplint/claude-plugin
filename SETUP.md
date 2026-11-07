@@ -31,7 +31,7 @@ In Claude Desktop, open **Customize > Plugins**, add the marketplace from GitHub
 
 Chat does not run a plugin's local MCP servers, so install the MCP Bundle instead:
 
-1. Download `pbiplint-0.2.5.mcpb` from this repository's [releases](https://github.com/pbiplint/claude-plugin/releases).
+1. Download `pbiplint-0.3.2.mcpb` from this repository's [releases](https://github.com/pbiplint/claude-plugin/releases).
 2. Open it. Claude Desktop shows an install dialog; select **Install**.
 
 The bundle carries pbiplint itself and runs on Claude Desktop's own Node, so it downloads nothing. Then ask Claude to lint a project and give it the project folder's full path.
@@ -41,11 +41,11 @@ To set it up by hand instead, add this to Claude Desktop's `claude_desktop_confi
 ```json
 {
   "mcpServers": {
-    "pbiplint": { "command": "npx", "args": ["-y", "pbiplint@0.2.5", "mcp"] }
+    "pbiplint": { "command": "npx", "args": ["-y", "pbiplint@0.3.2", "mcp"] }
   }
 }
 ```
 
 ## Other assistants
 
-`pbiplint mcp` is a standard MCP server over stdio, so any assistant that runs local MCP servers (VS Code with GitHub Copilot, Cursor, Codex, Gemini CLI) can start it with the same command, `npx -y pbiplint@0.2.5 mcp`. For a coding assistant's skill, run `npx pbiplint@0.2.5 skill --install <assistant>` (`claude`, `copilot`, `codex`, or `gemini`) in the project's folder.
+`pbiplint mcp` is a standard MCP server over stdio, so any assistant that runs local MCP servers (VS Code with GitHub Copilot, Cursor, Codex, Gemini CLI) can start it with the same command, `npx -y pbiplint@0.3.2 mcp`. For a coding assistant's skill, run `npx pbiplint@0.3.2 skill --install <assistant>` (`claude`, `copilot`, `codex`, or `gemini`) in the project's folder.
